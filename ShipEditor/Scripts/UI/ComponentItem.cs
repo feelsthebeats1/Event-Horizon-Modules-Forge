@@ -128,21 +128,27 @@ namespace ShipEditor.UI
 				yield return new KeyValuePair<string, string>("$HitPoints", FormatFloat(stats.ArmorPoints));
             if (stats.ArmorRepairRate > 0)
                 yield return new KeyValuePair<string, string>("$RepairRate", FormatFloat(stats.ArmorRepairRate));
+			if(stats.ArmorRepairCooldownMultiplier.Bonus != 0)
+				yield return new KeyValuePair<string, string>("$RepairCooldown", FormatFloat(stats.ArmorRepairCooldownMultiplier.Bonus));
 
-			if (!Mathf.Approximately(stats.EnergyPoints, 0))
+            if (!Mathf.Approximately(stats.EnergyPoints, 0))
 				yield return new KeyValuePair<string, string>("$Energy", FormatFloat(stats.EnergyPoints));
 
 			if (stats.EnergyConsumption > 0)
 				yield return new KeyValuePair<string, string>("$EnergyConsumption", FormatFloat(stats.EnergyConsumption));
 			if (stats.EnergyRecharge > 0)
-				yield return new KeyValuePair<string, string>("$RechargeRate", FormatFloat(stats.EnergyRecharge));
+				yield return new KeyValuePair<string, string>("$EnergyRechargeRate", FormatFloat(stats.EnergyRecharge));
+			if (stats.EnergyRechargeCooldownMultiplier.Bonus != 0)
+				yield return new KeyValuePair<string, string>("$EnergyRechargeCooldown", FormatFloat(stats.EnergyRechargeCooldownMultiplier.Bonus));
 
-		    if (!Mathf.Approximately(stats.ShieldPoints, 0))
+            if (!Mathf.Approximately(stats.ShieldPoints, 0))
 		        yield return new KeyValuePair<string, string>("$ShieldPoints", FormatFloat(stats.ShieldPoints));
             if (!Mathf.Approximately(stats.ShieldRechargeRate, 0))
 		        yield return new KeyValuePair<string, string>("$ShieldRechargeRate", FormatFloat(stats.ShieldRechargeRate));
+			if (stats.ShieldRechargeCooldownMultiplier.Bonus != 0)
+				yield return new KeyValuePair<string, string>("$ShieldRechargeCooldown", FormatFloat(stats.ShieldRechargeCooldownMultiplier.Bonus));
 
-		    if (stats.EnginePower != 0)
+            if (stats.EnginePower != 0)
 				yield return new KeyValuePair<string, string>("$Velocity", FormatFloat(stats.EnginePower));
 			if (stats.TurnRate != 0)
 				yield return new KeyValuePair<string, string>("$TurnRate", FormatFloat(stats.TurnRate));
