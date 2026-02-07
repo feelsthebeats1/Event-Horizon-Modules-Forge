@@ -107,6 +107,7 @@
     <string name="EnergyDPS">Energy DPS</string>
     <string name="CorrosiveDamage">Corrosive damage</string>
     <string name="CorrosiveDPS">Corrosive DPS</string>
+    <string name="ActiveConsumption">Active consumption</string>
     <string name="WeaponEnergy">Energy consumption</string>
     <string name="WeaponEPS">Energy per second</string>
     <string name="WeaponRange">Range</string>
