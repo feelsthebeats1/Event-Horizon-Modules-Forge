@@ -13,8 +13,17 @@ namespace ShipEditor.UI
         private float _scaleX;
         private float _scaleY;
 
-		public void SetIcon(Sprite icon, string layout, int size, Color color)
+        [SerializeField] private Sprite _emptyIcon;
+
+        public void SetIcon(Sprite icon, string layout, int size, Color color)
 		{
+			if (icon == null)
+			{
+				base.sprite = _emptyIcon;
+				base.color = Color.white;
+                return;
+			}
+
 			base.sprite = icon;
 			base.color = color;
 
