@@ -312,6 +312,15 @@ namespace ShipEditor.Model
 
             foreach (var component in components)
             {
+                bool lockedStateForInstall = component.Locked;
+                if (TryFindComponent(shipElement, new UnityEngine.Vector2Int(component.X, component.Y), component.Info, out var existingComponent))
+                {
+                    if (!existingComponent.Locked)
+                    {
+                        lockedStateForInstall = false;
+                    }
+                }
+
                 if (layout.FindComponent(component.X, component.Y, component.Info) != null) continue;
                 if (!layout.IsSuitableLocation(component.X, component.Y, component.Info.Data) ||
                     !_compatibilityChecker.IsCompatible(component.Info.Data) ||
@@ -322,7 +331,7 @@ namespace ShipEditor.Model
                 }
 
                 layout.InstallComponent(component.X, component.Y, component.Info,
-                    new ComponentSettings(component.KeyBinding, component.Behaviour, component.Locked));
+                    new ComponentSettings(component.KeyBinding, component.Behaviour, lockedStateForInstall));
             }
 
             return result;
