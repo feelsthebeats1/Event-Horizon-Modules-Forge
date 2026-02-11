@@ -313,12 +313,9 @@ namespace ShipEditor.Model
             foreach (var component in components)
             {
                 bool lockedStateForInstall = component.Locked;
-                if (TryFindComponent(shipElement, new UnityEngine.Vector2Int(component.X, component.Y), component.Info, out var existingComponent))
+                if (TryFindComponent(shipElement, new UnityEngine.Vector2Int(component.X, component.Y), component.Info, out var existingComponent) && !existingComponent.Locked)
                 {
-                    if (!existingComponent.Locked)
-                    {
-                        lockedStateForInstall = false;
-                    }
+                    lockedStateForInstall = false;
                 }
 
                 if (layout.FindComponent(component.X, component.Y, component.Info) != null) continue;
