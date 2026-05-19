@@ -60,6 +60,11 @@ namespace ShipEditor.UI
 		private string _shipInitialName;
 		private bool _overviewMode;
 
+		private void Awake()
+		{
+			_shipListPanel.Initialize(_shipEditor);
+		}
+
 		private void OnEnable()
 		{
 			_commandList.DataChanged += OnUndoListChanged;

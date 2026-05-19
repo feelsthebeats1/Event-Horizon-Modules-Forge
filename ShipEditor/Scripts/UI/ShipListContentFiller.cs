@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using Constructor.Ships;
+using Constructor.Ships.Modification;
+using GameDatabase;
 using Services.Localization;
 using Services.Resources;
+using ShipEditor.Model;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +14,7 @@ namespace ShipEditor.UI
     {
         [Inject] private readonly IResourceLocator _resourceLocator;
         [Inject] private readonly ILocalization _localization;
-
+        [Inject] private readonly IDatabase _database;
         [SerializeField] private ShipItem _itemPrefab;
 
         public void Initialize(IEnumerable<IShip> ships)
@@ -23,7 +26,7 @@ namespace ShipEditor.UI
 
         public GameObject GetListItem(int index, int itemType, GameObject obj)
         {
-            if (obj == null)
+            if (!obj)
             {
                 obj = Instantiate(_itemPrefab.gameObject);
             }
@@ -46,7 +49,7 @@ namespace ShipEditor.UI
 		private void UpdateShip(ShipItem item, IShip ship)
 		{
 			item.gameObject.SetActive(true);
-			item.Initialize(ship, _resourceLocator, _localization);
+			item.Initialize(ship, _resourceLocator, _localization, _database);
 		}
 
 		private readonly List<IShip> _ships = new List<IShip>();
